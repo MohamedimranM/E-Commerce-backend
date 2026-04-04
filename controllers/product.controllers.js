@@ -3,6 +3,16 @@ import slugify from 'slugify';
 import cloudinary from '../config/cloudinary.js';
 import fs from 'fs';
 
+// Get all distinct categories
+export const getCategories = async (req, res, next) => {
+  try {
+    const categories = await Product.distinct('category');
+    res.status(200).json({ success: true, categories });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Create a new product
 
 export const createProductWithImages = async (req, res, next) => {
@@ -24,8 +34,11 @@ export const createProductWithImages = async (req, res, next) => {
       fs.unlinkSync(file.path); // remove local file
     }
 
+    const slug = slugify(name, { lower: true, strict: true });
+
     const product = new Product({
       name,
+      slug,
       brand,
       category,
       description,

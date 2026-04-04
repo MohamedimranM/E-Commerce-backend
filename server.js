@@ -17,7 +17,7 @@ import productRoutes from './routes/product.routes.js';
 import bannerRoutes from './routes/banner.routes.js';
 
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001", "https://shoppingecomadmin.vercel.app"],
+  origin: ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002", "https://shoppingecomadmin.vercel.app"],
   credentials: true,
 }));
 

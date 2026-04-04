@@ -3,7 +3,8 @@ import {
   getProducts,
   getProductById,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getCategories
 } from '../controllers/product.controllers.js';
 import authorize from '../middleware/authorize.js';
 import restrictTo from '../middleware/restrictTo.js';
@@ -15,6 +16,7 @@ const productRouter = Router();
 
 // All product routes are protected
 productRouter.post('/', authorize, restrictTo('admin'), upload.array('images', 5), createProductWithImages);
+productRouter.get('/categories', getCategories);
 productRouter.get('/', getProducts);
 productRouter.get('/:id', getProductById);
 productRouter.put('/:id', authorize, restrictTo('admin'), updateProduct);

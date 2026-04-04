@@ -26,6 +26,7 @@ const productSchema = new mongoose.Schema(
     slug: { 
       type: String, 
       unique: true, 
+      sparse: true,
       lowercase: true 
     }, // Useful for SEO-friendly URLs (e.g., /product/iphone-15-pro)
     images: [
