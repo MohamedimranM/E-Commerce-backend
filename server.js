@@ -14,9 +14,10 @@ import userRouter from "./routes/users.routes.js";
 const app = express();
 
 import productRoutes from './routes/product.routes.js';
+import bannerRoutes from './routes/banner.routes.js';
 
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001"],
+  origin: ["http://localhost:3000", "http://localhost:3001", "https://shoppingecomadmin.vercel.app"],
   credentials: true,
 }));
 
@@ -31,6 +32,7 @@ app.use("/api/v1/products", productRoutes);
 
 app.use('/api/v1', reviewRoutes);
 app.use('/api/v1/cart', cartRoutes);
+app.use('/api/v1/banners', bannerRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
