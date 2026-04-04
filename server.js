@@ -4,6 +4,7 @@ import cartRoutes from './routes/cart.routes.js';
 
 import errorHandler from "./middleware/errorhandle.js";
 import express from "express";
+import cors from "cors";
 import { PORT, NODE_ENV } from "./config/env.js";
 import connectDB from "./database/connection.js";
 import authRoutes from "./routes/auth.routes.js";
@@ -13,6 +14,11 @@ import userRouter from "./routes/users.routes.js";
 const app = express();
 
 import productRoutes from './routes/product.routes.js';
+
+app.use(cors({
+  origin: ["http://localhost:3000", "http://localhost:3001"],
+  credentials: true,
+}));
 
 app.use(express.json());
 
