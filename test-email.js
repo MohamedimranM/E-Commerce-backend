@@ -26,7 +26,7 @@ try {
   const info = await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER, // send to yourself
-    subject: 'ShopHub — Test Email',
+    subject: 'Shopping Hub — Test Email',
     html: '<h2 style="color:#0984E3">Email is working!</h2><p>If you see this, your email config is correct.</p>',
   });
 

@@ -210,11 +210,11 @@ export const placeOrder = async (req, res) => {
         <span style="color:#0984E3">Shop</span>Hub
       </p>
       <p style="margin:8px 0 0;color:#aaa;font-size:11px;line-height:1.5">
-        You received this email because you placed an order on ShopHub.<br/>
+        You received this email because you placed an order on Shopping Hub.<br/>
         If you did not place this order, please contact us immediately.
       </p>
       <p style="margin:12px 0 0;color:#ccc;font-size:11px">
-        © ${new Date().getFullYear()} ShopHub. All rights reserved.
+        © ${new Date().getFullYear()} Shopping Hub. All rights reserved.
       </p>
     </div>
 
@@ -224,7 +224,7 @@ export const placeOrder = async (req, res) => {
 
       const info = await sendMail({
         to: req.user.email,
-        subject: `ShopHub — Order Confirmed #${orderId}`,
+        subject: `Shopping Hub — Order Confirmed #${orderId}`,
         html: emailHtml,
       });
       console.log('Email sent! Message ID:', info?.messageId);
