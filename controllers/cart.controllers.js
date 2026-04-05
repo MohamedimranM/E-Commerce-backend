@@ -62,10 +62,11 @@ export const removeFromCart = async (req, res) => {
     // If no products left, delete the cart itself
     if (cart.products.length === 0) {
       await Cart.deleteOne({ _id: cart._id });
-      return res.status(200).json({ success: true, message: 'Cart deleted as last product was removed.' });
+      return res.status(200).json({ success: true, cart: { products: [] } });
     }
 
     await cart.save();
+    await cart.populate('products.product');
     res.status(200).json({ success: true, cart });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -79,7 +80,7 @@ export const getCartByUser = async (req, res) => {
     const userId = req.user.id;
     const cart = await Cart.findOne({ user: userId }).populate('products.product');
     if (!cart) {
-      return res.status(404).json({ success: false, message: 'Cart not found' });
+      return res.status(200).json({ success: true, cart: { products: [] } });
     }
     res.status(200).json({ success: true, cart });
   } catch (error) {
