@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   getProducts,
+  getProductBySlug,
   getProductById,
   updateProduct,
   deleteProduct,
@@ -18,6 +19,7 @@ const productRouter = Router();
 productRouter.post('/', authorize, restrictTo('admin'), upload.array('images', 5), createProductWithImages);
 productRouter.get('/categories', getCategories);
 productRouter.get('/', getProducts);
+productRouter.get('/slug/:slug', getProductBySlug);
 productRouter.get('/:id', getProductById);
 productRouter.put('/:id', authorize, restrictTo('admin'), updateProduct);
 productRouter.delete('/:id', authorize, restrictTo('admin'), deleteProduct);

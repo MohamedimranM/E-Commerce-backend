@@ -95,6 +95,22 @@ export const getProducts = async (req, res, next) => {
   }
 };
 
+// Get a single product by slug
+export const getProductBySlug = async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+    const product = await Product.findOne({ slug }).populate('user', 'name email');
+    if (!product) {
+      const err = new Error('Product not found.');
+      err.statusCode = 404;
+      return next(err);
+    }
+    res.status(200).json({ success: true, product });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Get a single product by ID
 export const getProductById = async (req, res, next) => {
   try {
