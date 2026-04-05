@@ -1,6 +1,7 @@
 
 import reviewRoutes from './routes/review.routes.js';
 import cartRoutes from './routes/cart.routes.js';
+import orderRoutes from './routes/order.routes.js';
 
 import errorHandler from "./middleware/errorhandle.js";
 import express from "express";
@@ -32,6 +33,7 @@ app.use("/api/v1/products", productRoutes);
 
 app.use('/api/v1', reviewRoutes);
 app.use('/api/v1/cart', cartRoutes);
+app.use('/api/v1/orders', orderRoutes);
 app.use('/api/v1/banners', bannerRoutes);
 
 app.get("/", (req, res) => {
